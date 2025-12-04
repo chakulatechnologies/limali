@@ -1,7 +1,7 @@
-FarmSmart AI
+FarmMarket AI
 Market Intelligence and Responsible AI for Smallholder Farmers in Kenya
 
-FarmSmart AI is a decision-support system designed to help smallholder farmers understand where and when to sell their crops for the best possible return.
+FarmMarket AI is a decision-support system designed to help smallholder farmers understand where and when to sell their crops for the best possible return.
 It translates raw market data into actionable guidance that farmers can understand and trust, regardless of language, literacy level, or access to technology.
 
 The goal is not only to provide information, but to bridge the gap between farmers and the markets that determine their livelihood.
@@ -21,7 +21,7 @@ Whether transporting produce to a distant market is worth the cost
 
 Her decisions are often influenced by incomplete or unreliable information. As a result, Mary sometimes sells too early, travels too far, or earns less than she could.
 
-FarmSmart AI supports Mary by providing:
+FarmMarket AI supports Mary by providing:
 
 A prediction of how crop prices are likely to move
 
@@ -38,7 +38,7 @@ She simply enters her crop and county, and FarmSmart AI returns advice she can u
 
 2. What the System Does
 
-FarmSmart AI provides four core capabilities:
+FarmMarket AI provides four core capabilities:
 
 Market Price Forecasting
 
@@ -59,7 +59,7 @@ The guidance emphasises transparency: why a market was chosen, what assumptions 
 
 3. AI Model for Overcoming Language Barriers
 
-FarmSmart AI uses a language model (Gemini) to ensure that insights are communicated effectively across diverse farmer populations.
+FarmMarket AI uses a language model (Gemini) to ensure that insights are communicated effectively across diverse farmer populations.
 This model is used only for explanation and translation, not for price prediction.
 
 The language model addresses:
@@ -91,7 +91,7 @@ This helps prevent the “black box” problem where users cannot understand or 
 
 4. Ethical Principles
 
-FarmSmart AI is built with responsibility in mind:
+FarmMarket AI is built with responsibility in mind:
 
 Uses only open, ethically sourced data
 
@@ -182,7 +182,7 @@ POST /api/market/advice/
 
 8. Intended Impact
 
-FarmSmart AI has been designed to:
+FarmMarket AI has been designed to:
 
 Improve farmers’ ability to negotiate fair prices
 

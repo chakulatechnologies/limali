@@ -1,0 +1,92 @@
+County,Market,Crop,Unit,Wholesale_Price_KES,Retail_Price_KES,Supply_Volume
+Nakuru,Wakulima,Potatoes,Kg,55,70,5000
+,Wakulima,Tomatoes,Kg,85,100,4500
+,Molo,Cabbage,Pc,30,40,3000
+,Njoro,Maize,90kg bag,5100,5500,2000
+,Rongai,Beans,Kg,140,160,1500
+Kisumu,Kibuye,Maize,90kg,5300,5700,2500
+,Kondele,Tomatoes,Kg,100,120,4000
+,Ahero,Rice,Kg,120,140,3000
+,Manyatta,Mangoes,Pc,25,35,2000
+Kiambu,Githurai,Banana,Kg,50,65,3000
+,Thika,Tomatoes,Kg,95,110,4200
+,Limuru,Potatoes,Kg,60,75,3500
+,Kikuyu,Avocado,Pc,40,55,2000
+,Ruiru,Kale,Bunch,30,40,2500
+Trans Nzoia,Kitale,Maize,90kg,4800,5200,3000
+Trans Nzoia,Kitale,Beans,Kg,130,150,1800
+Trans Nzoia,Kiminini,Wheat,90kg,6000,6500,1500
+Trans Nzoia,Endebess,Potatoes,Kg,50,65,2800
+Uasin Gishu,Eldoret,Maize,90kg bag,5000,5400,3500
+Uasin Gishu,Eldoret,Wheat,90kg bag,6200,6700,2000
+Uasin Gishu,Burnt Forest,Beans,Kg,150,170,1600
+Uasin Gishu,ZIwa,Kales,Bunch,25,35,2200
+,,,,,,
+Nakuru,Wakulima,Potatoes,Kg,52,68,4800
+Nakuru,Wakulima,Tomatoes,Kg,82,98,4300
+Nakuru,Molo,Cabbage,Pc,28,38,2900
+Nakuru,Njoro,Maize,90kg bag,4950,5350,1950
+Nakuru,Rongai,Beans,Kg,135,155,1450
+Kisumu,Kibuye,Maize,90kg,5100,5500,2400
+Kisumu,Kondele,Tomatoes,Kg,98,118,3900
+Kisumu,Ahero,Rice,Kg,118,138,2900
+Kisumu,Manyatta,Mangoes,Pc,24,34,1950
+Kiambu,Githurai,Banana,Kg,48,63,2900
+Kiambu,Thika,Tomatoes,Kg,92,107,4100
+Kiambu,Limuru,Potatoes,Kg,58,73,3400
+Kiambu,Kikuyu,Avocado,Pc,38,53,1950
+Kiambu,Ruiru,Kale,Bunch,28,38,2400
+Trans Nzoia,Kitale,Maize,90kg,4600,5000,2900
+Trans Nzoia,Kitale,Beans,Kg,128,148,1750
+Trans Nzoia,Kiminini,Wheat,90kg,5800,6300,1450
+Trans Nzoia,Endebess,Potatoes,Kg,48,63,2700
+Uasin Gishu,Eldoret,Maize,90kg bag,4800,5200,3400
+Uasin Gishu,Eldoret,Wheat,90kg bag,6000,6500,1950
+Uasin Gishu,Burnt Forest,Beans,Kg,148,168,1550
+Uasin Gishu,ZIwa,Kales,Bunch,23,33,2100
+,,,,,,
+,,,,,,
+Nakuru,Wakulima,Potatoes,Kg,50,66,4700
+Nakuru,Wakulima,Tomatoes,Kg,80,96,4200
+Nakuru,Molo,Cabbage,Pc,26,36,2800
+Nakuru,Njoro,Maize,90kg bag,4800,5200,1900
+Nakuru,Rongai,Beans,Kg,130,150,1400
+Kisumu,Kibuye,Maize,90kg,4900,5300,2300
+Kisumu,Kondele,Tomatoes,Kg,96,116,3800
+Kisumu,Ahero,Rice,Kg,116,136,2800
+Kisumu,Manyatta,Mangoes,Pc,23,33,1900
+Kiambu,Githurai,Banana,Kg,46,61,2800
+Kiambu,Thika,Tomatoes,Kg,90,105,4000
+Kiambu,Limuru,Potatoes,Kg,56,71,3300
+Kiambu,Kikuyu,Avocado,Pc,36,51,1900
+Kiambu,Ruiru,Kale,Bunch,26,36,2300
+Trans Nzoia,Kitale,Maize,90kg,4400,4800,2800
+Trans Nzoia,Kitale,Beans,Kg,126,146,1700
+Trans Nzoia,Kiminini,Wheat,90kg,5600,6100,1400
+Trans Nzoia,Endebess,Potatoes,Kg,46,61,2600
+Uasin Gishu,Eldoret,Maize,90kg bag,4600,5000,3300
+Uasin Gishu,Eldoret,Wheat,90kg bag,5800,6300,1900
+Uasin Gishu,Burnt Forest,Beans,Kg,146,166,1500
+Uasin Gishu,ZIwa,Kales,Bunch,21,31,2000
+Nakuru,Wakulima,Potatoes,Kg,48,64,4600
+Nakuru,Wakulima,Tomatoes,Kg,78,94,4100
+Nakuru,Molo,Cabbage,Pc,24,34,2700
+Nakuru,Njoro,Maize,90kg bag,4650,5050,1850
+Nakuru,Rongai,Beans,Kg,125,145,1350
+Kisumu,Kibuye,Maize,90kg,4700,5100,2200
+Kisumu,Kondele,Tomatoes,Kg,94,114,3700
+Kisumu,Ahero,Rice,Kg,114,134,2700
+Kisumu,Manyatta,Mangoes,Pc,22,32,1850
+Kiambu,Githurai,Banana,Kg,44,59,2700
+Kiambu,Thika,Tomatoes,Kg,88,103,3900
+Kiambu,Limuru,Potatoes,Kg,54,69,3200
+Kiambu,Kikuyu,Avocado,Pc,34,49,1850
+Kiambu,Ruiru,Kale,Bunch,24,34,2200
+Trans Nzoia,Kitale,Maize,90kg,4200,4600,2700
+Trans Nzoia,Kitale,Beans,Kg,124,144,1650
+Trans Nzoia,Kiminini,Wheat,90kg,5400,5900,1350
+Trans Nzoia,Endebess,Potatoes,Kg,44,59,2500
+Uasin Gishu,Eldoret,Maize,90kg bag,4400,4800,3200
+Uasin Gishu,Eldoret,Wheat,90kg bag,5600,6100,1850
+Uasin Gishu,Burnt Forest,Beans,Kg,144,164,1450
+Uasin Gishu,ZIwa,Kales,Bunch,19,29,1900

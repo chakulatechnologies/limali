@@ -127,19 +127,32 @@ Using forecast output, distance to markets, and transport costs, the system iden
 The final recommendation is translated into farmer-friendly language and culturally relevant guidance.
 
 6. Project Structure (Simplified)
+7. 
 market_ai/
 │
-├── ai/                     # Language model integration and AI explanations
-├── ingestion/              # CSV upload and preprocessing
-├── forecasting/            # Price prediction and model training
-├── recommendations/        # Market ranking and selling window logic
-├── prices/                 # Market price database models
-├── markets/                # Market metadata and location data
-├── farms/                  # Farmer crop and location information
-├── users/                  # User profiles and consent tracking
+
+├── ai/ 
+# Language model integration and AI explanations
+├── ingestion/ 
+# CSV upload and preprocessing
+├── forecasting/     
+# Price prediction and model training
+├── recommendations/   
+# Market ranking and selling window logic
+├── prices/       
+# Market price database models
+├── markets/     
+# Market metadata and location data
+├── farms/     
+# Farmer crop and location information
+├── users/       
+# User profiles and consent tracking
+
 │
-├── models/prophet/         # Trained forecasting model files
-└── data/                   # Uploaded and cleaned CSV datasets
+├── models/prophet/    
+# Trained forecasting model files
+└── data/  
+# Uploaded and cleaned CSV datasets
 
 
 This structure keeps data, logic, and AI processing clearly separated.

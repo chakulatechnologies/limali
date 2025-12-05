@@ -1,85 +1,98 @@
 # profit_model.py
 
 import pandas as pd
-from math import radians, sin, cos, sqrt, atan2
-from locations import TOWN_COORDINATES
+
+# -----------------------------------------------------------
+# 1️⃣ County / Region clusters (simple parent-area grouping)
+# -----------------------------------------------------------
+REGION_CLUSTERS = {
+    "nairobi_metropolitan": {
+        "counties": ["nairobi", "kajiado", "kiambu", "machakos"]
+    },
+    "rift_valley": {
+        "counties": ["nakuru", "uasin gishu", "kericho", "baringo", "bomet", "laikipia"]
+    },
+    "western": {
+        "counties": ["kakamega", "vihiga", "bungoma", "busia"]
+    },
+    "nyanza": {
+        "counties": ["kisumu", "homa bay", "migori", "siaya", "kisii", "nyamira"]
+    },
+    "central": {
+        "counties": ["nyeri", "kirinyaga", "murang'a", "muranga", "embu"]
+    },
+    "coast": {
+        "counties": ["mombasa", "kilifi", "lamu", "kwale", "taita taveta"]
+    },
+    "eastern": {
+        "counties": ["meru", "kitui", "makueni", "tharaka nithi"]
+    }
+}
 
 
-# -------------------------------------------
-# 1️⃣ Haversine Distance (km)
-# -------------------------------------------
-def compute_distance(lat1, lon1, lat2, lon2):
-    R = 6371  # Earth radius (km)
-    dlat = radians(lat2 - lat1)
-    dlon = radians(lon2 - lon1)
-    a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
-    c = 2 * atan2(sqrt(a), sqrt(1-a))
-    return R * c
+# -----------------------------------------------------------
+# 2️⃣ Find which region a county belongs to
+# -----------------------------------------------------------
+def get_region(county: str):
+    county_clean = county.lower().strip()
+    for region, data in REGION_CLUSTERS.items():
+        if county_clean in data["counties"]:
+            return region
+    return None
 
 
-# -------------------------------------------
-# 2️⃣ Transport Cost Estimator (simple model)
-#  - Assumes ~ KES 30 per km per standard load
-# -------------------------------------------
-def estimate_transport_cost(distance_km):
-    return round(distance_km * 30)  # you can tune this later
-
-
-# -------------------------------------------
-# 3️⃣ Choose nearest market + best profit
-# -------------------------------------------
+# -----------------------------------------------------------
+# 3️⃣ Main Ranking Logic (No GPS, No Transport Cost)
+# -----------------------------------------------------------
 def compute_top_markets(df: pd.DataFrame, farmer_location: str, crop: str):
 
-    farmer_key = farmer_location.lower().strip()
-
-    if farmer_key not in TOWN_COORDINATES:
-        # fallback: treat county center as location
-        user_lat, user_lon = TOWN_COORDINATES.get("kajiado", (None, None))
-    else:
-        user_lat, user_lon = TOWN_COORDINATES[farmer_key]
-
-    # Normalize crop
     crop_clean = crop.lower().strip()
+    farmer_region = get_region(farmer_location)
 
-    # Filter dataset by crop
+    # Filter crops
     df_crop = df[df["crop_norm"] == crop_clean].copy()
-
     if df_crop.empty:
         return []
 
-    # Ensure coordinate columns exist
-    if "lat" not in df_crop.columns or "lon" not in df_crop.columns:
-        return []
+    # -------------------------------------------
+    # If region known → prioritize markets in that region
+    # -------------------------------------------
+    if farmer_region:
+        df_crop["in_farmer_region"] = df_crop["county_norm"].apply(
+            lambda x: 1 if x in REGION_CLUSTERS[farmer_region]["counties"] else 0
+        )
+    else:
+        df_crop["in_farmer_region"] = 0  # no region match fallback
 
-    # Compute distance to each market
-    df_crop["distance_km"] = df_crop.apply(
-        lambda r: compute_distance(user_lat, user_lon, r["lat"], r["lon"]),
-        axis=1
-    )
+    # -------------------------------------------
+    # Compute median price for this crop
+    # -------------------------------------------
+    median_price = df_crop["retail_price"].median()
 
-    # Estimate transport cost
-    df_crop["transport_cost"] = df_crop["distance_km"].apply(estimate_transport_cost)
+    # Distance from median (to avoid extreme markets)
+    df_crop["median_diff"] = abs(df_crop["retail_price"] - median_price)
 
-    # Effective profit = price - transport
-    df_crop["effective_profit"] = df_crop["retail_price"] - df_crop["transport_cost"]
-
-    # Sort by best profit, then nearest
-    df_sorted = df_crop.sort_values(
-        by=["effective_profit", "distance_km"],
-        ascending=[False, True]
+    # -------------------------------------------
+    # Sort Priority:
+    # 1. Markets in same region
+    # 2. Highest retail price
+    # 3. Closest to median price (stability)
+    # -------------------------------------------
+    df_ranked = df_crop.sort_values(
+        by=["in_farmer_region", "retail_price", "median_diff"],
+        ascending=[False, False, True]
     )
 
     # Return top 3
-    top3 = df_sorted.head(3)
+    top3 = df_ranked.head(3)
 
     return [
         {
             "market": row["market"],
             "county": row["county"],
             "retail_price": row["retail_price"],
-            "distance_km": round(row["distance_km"], 2),
-            "transport_cost": int(row["transport_cost"]),
-            "effective_profit": int(row["effective_profit"])
+            "in_farmer_region": int(row["in_farmer_region"]),
+            "median_diff": float(row["median_diff"])
         }
         for _, row in top3.iterrows()
     ]

@@ -1,35 +1,42 @@
-# profit_tips.py
+def transport_savings_tips(distance_km, transport_cost):
+    """
+    Generate simple transport-saving suggestions.
+    Handles cases where distance_km or cost is None.
+    """
 
-def transport_savings_tips(distance_km: float, transport_cost: float):
+    # If distance is missing → give generic advice
+    if distance_km is None:
+        return [
+            "Ask local transporters about shared delivery options.",
+            "Compare buyer prices early in the morning.",
+            "Choose the closest main market to reduce cost."
+        ]
+
     tips = []
 
-    # Shared transport recommendation
-    if distance_km > 5:
-        tips.append(
-            "Consider sharing transport with another farmer to reduce the per-km cost."
-        )
-
-    # Early morning efficiency
-    if distance_km > 10:
-        tips.append(
-            "Leaving early in the morning reduces fuel consumption due to cooler temperatures and less traffic."
-        )
-
-    # Local market alternative
-    if distance_km > 15:
-        tips.append(
-            "If transport cost is high, check if there is a nearby local market day that might offer competitive prices."
-        )
-
-    # Short distance tips
+    # Short distance
     if distance_km <= 5:
-        tips.append(
-            "Because the market is close, you can deliver quickly and keep produce fresh for better bargaining power."
-        )
+        tips.append("Short distance — consider walking or using a motorbike to reduce cost.")
+    else:
+        tips.append("Share transport with neighbors to reduce per-km charges.")
 
-    # Universal advice
-    tips.append(
-        "Transporting produce in bulk or combining deliveries often lowers cost per kilogram."
-    )
+    # Medium distance
+    if 5 < distance_km <= 20:
+        tips.append("Travel early in the morning to find better prices and less traffic.")
 
-    return tips[:3]   # return the best 3 tips only
+    # Long distance
+    if distance_km > 20:
+        tips.append("Compare transporters before choosing one; prices vary widely.")
+
+    # If transport cost exists
+    if transport_cost is not None:
+        if transport_cost > 800:
+            tips.append("High transport cost — sell in a closer market if possible.")
+        else:
+            tips.append("Transport cost is moderate — evaluate profit before selling.")
+
+    # Ensure at least one tip
+    if not tips:
+        tips.append("Consider distance and transport cost before choosing a market.")
+
+    return tips

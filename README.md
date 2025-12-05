@@ -1,148 +1,203 @@
-Limali — Your Local Market Companion for Better Farming Decisions
+Limali — AI Market Assistant for Kenyan Farmers
+Smart, Local, Multilingual Market Insights for Better Farming Decisions
 
-Limali is a simple AI assistant built to help Kenyan farmers know where to sell their produce for the best price.
-No heavy apps, no complicated systems — just clear, friendly advice available in the language the farmer feels most comfortable with.
+Overview
 
-We designed Limali to work the same way farmers already ask for help:
-“Niuze wapi ili nipate bei mzuri?”
-And Limali answers that question — instantly.
+Limali is an AI-powered assistant that helps Kenyan farmers know where to sell their produce for the best price, based on their county, crop, and preferred language.
+It provides simple, human advice, translated into the languages farmers use every day  English, Swahili, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, Somali, and more.
 
- Why We Built Limali
+This project demonstrates how lightweight data and modern AI can meaningfully improve farmers’ earnings and decision-making, without requiring complex apps or heavy infrastructure.
 
-Farmers often struggle to know:
+Why Limali Matters
 
-Which nearby market is paying the best price
+Farmers often make decisions with limited, outdated, or inaccessible market information.
+Limali solves these real challenges:
 
-Whether prices are stable, rising, or falling
+Difficulty knowing which nearby market pays the best
 
-How location affects their profit
+Lack of localized, farmer-friendly guidance
 
-Who to trust for accurate, timely information
+Language barriers
 
-Limali solves this by combining simple data with smart, culturally aware AI.
+No access to real market intelligence tools
 
-Farmers deserve transparent, local, and easy-to-understand market guidance — and Limali provides exactly that.
+Uncertainty around price stability
 
- How Limali Works
+By combining simple CSV data, region-based logic, and Google Gemini AI, Limali transforms raw information into useful, clear, actionable advice.
 
-Here's the journey from the farmer’s question to the AI’s answer:
+ How Limali Works (Simple Flow)
+ 
+Farmer → Enters name, county, crop, language
+          ↓
+Limali Backend → Reads markets.csv + ranks top 3 markets
+          ↓
+Gemini AI → Creates multilingual explanation + advice
+          ↓
+Farmer → Receives clear guidance in chosen language
 
-The farmer enters:
 
-Their name
+Limali evaluates markets using:
 
-The county or town they are in
+Crop type
 
-The crop they want to sell
+County and regional clusters
 
-The language they prefer (English, Swahili, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, Somali)
+Retail price
 
-Limali reads real market data
-A simple CSV file contains market names, counties, and prices.
-Limali uses this to find the best three markets for that specific crop.
+Median price stability
 
-Limali looks at regional patterns
-If the farmer is in Rift Valley, it prioritizes Rift Valley markets first.
-If the farmer is in Central, it prioritizes Central markets.
-This creates smart, human-like reasoning without GPS or complex systems.
+Distance scoring (when available)
 
-Limali sends the information to Gemini AI
-Gemini turns the numbers into meaningful guidance:
+Gemini then:
 
-Which market is best
+Explains the recommendation
 
-Why it’s best
+Speaks in the farmer’s chosen language
 
-What to consider before selling
+Gives practical selling advice
 
-Advice in the farmer’s chosen language
+Key Features
 
-Limali returns a friendly, WhatsApp-style response
-Simple. Local. Clear.
+🌐 Multilingual Support
 
- What Makes Limali Special
-✔ Made for all farmers — not just tech-savvy ones
+Farmers choose from:
+English, Kiswahili, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, Somali
 
-The system works through a simple command line demo or WhatsApp-style UI.
+📊 Top 3 Market Recommendations
 
-✔ Speaks the farmer’s language
+Filtered and ranked by:
 
-Whether it's Swahili, English, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, or Somali —
-Limali adapts instantly.
+Market price
 
-✔ Fast and reliable
+Regional proximity
 
-It uses lightweight logic with no big databases.
-Everything runs off a single CSV and a small backend.
+Price stability
 
-✔ Built around real challenges
+Smart fallback logic
 
-Transport cost, distance, region, price stability — all considered.
+💬 AI-Generated Advice
 
-✔ Hackathon-friendly
+Gemini responds with:
 
-A full working prototype ready to demo in seconds.
+Why the chosen market is best
 
- What’s Inside the Project
+How the farmer should plan selling time
 
-FastAPI backend that loads market data and ranks the best markets
+Contextual tips (transport, timing, negotiation)
 
-Profit + region model for smart recommendations even without GPS
+💻 Fast, Lightweight, Reliable
 
-Gemini AI integration for natural, friendly advice
+Uses:
 
-Multilingual system that adjusts to the farmer's preference
+A single CSV file
 
-CLI demo that simulates a WhatsApp conversation
+A simple FastAPI backend
 
-Simple file-based data that anyone can update
+No heavy databases
 
- How to Try It Out
+No complex infrastructure
 
-Run the server:
+🧪 Demo Experience (CLI)
 
+Limali includes a WhatsApp-style CLI demo where the farmer is asked:
+
+“Enter your name”
+
+“Enter your county or town”
+
+“Enter your crop”
+
+“Choose your language”
+
+Limali then replies with:
+
+📊 Top 3 Market Recommendations
+🤖 AI Explanation (in chosen language)
+
+
+Fast, clear, and perfect for hackathon presentations.
+
+🏗️ Project Structure
+limali/
+├── main.py                  # FastAPI server
+├── gemini_client.py         # AI prompt builder + response handler
+├── profit_model.py          # Market ranking logic (regional clustering + price median)
+├── profit_tips.py           # Practical transport / timing advice
+├── profit_forecast.py       # Simple price-trend insights
+├── locations.py             # County/town mapping & fallbacks
+├── markets.csv              # Market price dataset
+├── demo_cli.py              # Interactive CLI demo (WhatsApp-style)
+├── requirements.txt         # Dependencies
+└── README.md                # Documentation
+
+⚙️ Setup Instructions
+1️⃣ Clone the Project
+git clone <repo-url>
+cd limali
+
+2️⃣ Create a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+3️⃣ Install dependencies
+pip install -r requirements.txt
+
+4️⃣ Add Gemini API key
+
+Create .env:
+
+GEMINI_API_KEY=your_key_here
+
+5️⃣ Run the backend
 uvicorn main:app --reload
 
-
-Run the demo:
-
+6️⃣ Run the CLI demo
 python3 demo_cli.py
 
+📡 Example API Request
+POST /advise
 
-You'll be asked:
+Request:
 
-Name
+{
+  "name": "Mary",
+  "county": "Kajiado",
+  "crop": "maize",
+  "language": "sw"
+}
 
-County
 
-Crop
+Response (simplified):
 
-Preferred language
+{
+  "best_markets": [
+    { "market": "Ngong", "retail_price": 5200 },
+    { "market": "Kiserian", "retail_price": 5100 },
+    { "market": "Nkoroi", "retail_price": 5050 }
+  ],
+  "explanation": "Mary, soko bora lililo karibu zaidi ni..."
+}
 
-And Limali will guide you from there.
+🔮 What Limali Could Become
 
- Example of What Limali Says
+Limali is designed to grow into a real, national tool. Future updates might include:
 
-“Ray, the best market near you is Njoro because prices are higher today,
-and markets in your region are performing well.
-You may earn better returns by selling early in the morning.”
+Real-time price data APIs
 
-Or in Swahili:
+GPS-based distance scoring
 
-“Ray, soko bora lililo karibu zaidi ni Njoro.
-Bei ni nzuri na unaweza kupata faida zaidi ikiwa utauza mapema.”
+Weather alerts
 
-Or Kikuyu:
+Soil and crop recommendations
 
-“Ray, thirikari yaku ya mbere nĩ Njoro tondũ wĩrahũrũo wendo mwega.”
+WhatsApp Business / Twilio deployment
 
-Limali always speaks in the language the farmer understands best.
+Farmer profile + history tracking
 
- The Heart of Limali
+❤️ The Heart Behind Limali
 
-Limali is built on a simple idea:
-Empower farmers with clear, local, trustworthy market knowledge.
+Limali is built around one mission:
 
-No complexity.
-No barriers.
-Just practical, human advice accessible to anyone.
+Give every Kenyan farmer simple, reliable, and culturally familiar guidance that helps them earn more.
+
+It respects language, culture, and local market knowledge while using AI to empower decision-making.

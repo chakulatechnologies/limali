@@ -1,196 +1,148 @@
-FarmMarket AI
-Market Intelligence and Responsible AI for Smallholder Farmers in Kenya
+Limali — Your Local Market Companion for Better Farming Decisions
 
-FarmMarket AI is a decision-support system designed to help smallholder farmers understand where and when to sell their crops for the best possible return.
-It translates raw market data into actionable guidance that farmers can understand and trust, regardless of language, literacy level, or access to technology.
+Limali is a simple AI assistant built to help Kenyan farmers know where to sell their produce for the best price.
+No heavy apps, no complicated systems — just clear, friendly advice available in the language the farmer feels most comfortable with.
 
-The goal is not only to provide information, but to bridge the gap between farmers and the markets that determine their livelihood.
+We designed Limali to work the same way farmers already ask for help:
+“Niuze wapi ili nipate bei mzuri?”
+And Limali answers that question — instantly.
 
-1. User Story
+ Why We Built Limali
 
-Mary is a smallholder farmer in Kajiado County.
-She grows maize and beans on her one-acre plot. Mary has always depended on neighbours, brokers, and local traders to know:
+Farmers often struggle to know:
 
-When to harvest
+Which nearby market is paying the best price
 
-When prices might go up or down
+Whether prices are stable, rising, or falling
 
-Where to sell for a fair return
+How location affects their profit
 
-Whether transporting produce to a distant market is worth the cost
+Who to trust for accurate, timely information
 
-Her decisions are often influenced by incomplete or unreliable information. As a result, Mary sometimes sells too early, travels too far, or earns less than she could.
+Limali solves this by combining simple data with smart, culturally aware AI.
 
-FarmMarket AI supports Mary by providing:
+Farmers deserve transparent, local, and easy-to-understand market guidance — and Limali provides exactly that.
 
-A prediction of how crop prices are likely to move
+ How Limali Works
 
-A comparison of nearby markets based on price, distance, and transport costs
+Here's the journey from the farmer’s question to the AI’s answer:
 
-A clear recommendation of the best market to sell in
+The farmer enters:
 
-A simple explanation in the language she understands
+Their name
 
-A suggested selling window when the market price will likely be highest
+The county or town they are in
 
-Mary does not need to understand algorithms or forecasting models.
-She simply enters her crop and county, and FarmSmart AI returns advice she can use immediately.
+The crop they want to sell
 
-2. What the System Does
+The language they prefer (English, Swahili, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, Somali)
 
-FarmMarket AI provides four core capabilities:
+Limali reads real market data
+A simple CSV file contains market names, counties, and prices.
+Limali uses this to find the best three markets for that specific crop.
 
-Market Price Forecasting
+Limali looks at regional patterns
+If the farmer is in Rift Valley, it prioritizes Rift Valley markets first.
+If the farmer is in Central, it prioritizes Central markets.
+This creates smart, human-like reasoning without GPS or complex systems.
 
-Using historical retail and wholesale prices, the system predicts short-term future price trends for each crop in each market.
+Limali sends the information to Gemini AI
+Gemini turns the numbers into meaningful guidance:
 
-Market Comparison and Ranking
+Which market is best
 
-It calculates the effective profit a farmer can make after subtracting transport costs, then ranks markets accordingly.
+Why it’s best
 
-Best Selling Window
+What to consider before selling
 
-The system identifies the period where prices are predicted to be highest, helping farmers make timely decisions.
+Advice in the farmer’s chosen language
 
-Human-Centred AI Explanation
+Limali returns a friendly, WhatsApp-style response
+Simple. Local. Clear.
 
-Using a language-aware model, the system produces simplified explanations that farmers can understand.
-The guidance emphasises transparency: why a market was chosen, what assumptions were made, and how the model reached its conclusion.
+ What Makes Limali Special
+✔ Made for all farmers — not just tech-savvy ones
 
-3. AI Model for Overcoming Language Barriers
+The system works through a simple command line demo or WhatsApp-style UI.
 
-FarmMarket AI uses a language model (Gemini) to ensure that insights are communicated effectively across diverse farmer populations.
-This model is used only for explanation and translation, not for price prediction.
+✔ Speaks the farmer’s language
 
-The language model addresses:
+Whether it's Swahili, English, Kikuyu, Maasai, Luo, Luhya, Kamba, Meru, or Somali —
+Limali adapts instantly.
 
-Simplification
+✔ Fast and reliable
 
-The system converts technical output from forecasting and ranking algorithms into accessible responses that avoid jargon.
+It uses lightweight logic with no big databases.
+Everything runs off a single CSV and a small backend.
 
-Local Language Support
+✔ Built around real challenges
 
-The model generates explanations in Swahili and can be adapted for local languages such as Kikuyu, Kalenjin, or Maasai.
+Transport cost, distance, region, price stability — all considered.
 
-Cultural Context
+✔ Hackathon-friendly
 
-Phrasing and examples are chosen to be relevant to Kenyan rural contexts, ensuring that advice aligns with how farmers think and make decisions.
+A full working prototype ready to demo in seconds.
 
-Transparency
+ What’s Inside the Project
 
-The explanation always includes:
+FastAPI backend that loads market data and ranks the best markets
 
-Why a specific market was recommended
+Profit + region model for smart recommendations even without GPS
 
-What the predicted prices are
+Gemini AI integration for natural, friendly advice
 
-What assumptions were used
+Multilingual system that adjusts to the farmer's preference
 
-What factors influenced the decision
-This helps prevent the “black box” problem where users cannot understand or trust AI decisions.
+CLI demo that simulates a WhatsApp conversation
 
-4. Ethical Principles
+Simple file-based data that anyone can update
 
-FarmMarket AI is built with responsibility in mind:
+ How to Try It Out
 
-Uses only open, ethically sourced data
+Run the server:
 
-Does not require sensitive or personally identifiable information
+uvicorn main:app --reload
 
-Provides explanation for every decision
 
-Supports fairness by ensuring underserved regions are not excluded due to data gaps
+Run the demo:
 
-Works in low-bandwidth settings
+python3 demo_cli.py
 
-Respects user consent and privacy
 
-5. High-Level Architecture
+You'll be asked:
 
-The system is organised into four primary modules:
+Name
 
-1. Data Ingestion
+County
 
-Market prices are uploaded in CSV format.
-The system validates and cleans the data before storing it.
+Crop
 
-2. Forecasting
+Preferred language
 
-Each crop–market pair is used to train a lightweight Prophet model that predicts future prices.
+And Limali will guide you from there.
 
-3. Recommendation Engine
+ Example of What Limali Says
 
-Using forecast output, distance to markets, and transport costs, the system identifies the best market and selling window.
+“Ray, the best market near you is Njoro because prices are higher today,
+and markets in your region are performing well.
+You may earn better returns by selling early in the morning.”
 
-4. AI Explanation Layer
+Or in Swahili:
 
-The final recommendation is translated into farmer-friendly language and culturally relevant guidance.
+“Ray, soko bora lililo karibu zaidi ni Njoro.
+Bei ni nzuri na unaweza kupata faida zaidi ikiwa utauza mapema.”
 
-6. Project Structure (Simplified)
-7. 
-market_ai/
-│
+Or Kikuyu:
 
-├── ai/ 
-# Language model integration and AI explanations
-├── ingestion/ 
-# CSV upload and preprocessing
-├── forecasting/     
-# Price prediction and model training
-├── recommendations/   
-# Market ranking and selling window logic
-├── prices/       
-# Market price database models
-├── markets/     
-# Market metadata and location data
-├── farms/     
-# Farmer crop and location information
-├── users/       
-# User profiles and consent tracking
+“Ray, thirikari yaku ya mbere nĩ Njoro tondũ wĩrahũrũo wendo mwega.”
 
-│
-├── models/prophet/    
-# Trained forecasting model files
-└── data/  
-# Uploaded and cleaned CSV datasets
+Limali always speaks in the language the farmer understands best.
 
+ The Heart of Limali
 
-This structure keeps data, logic, and AI processing clearly separated.
-It ensures that each part of the system can be improved or replaced independently.
+Limali is built on a simple idea:
+Empower farmers with clear, local, trustworthy market knowledge.
 
-7. Running the System
-1. Install dependencies
-pip install -r requirements.txt
-
-2. Run migrations
-python manage.py migrate
-
-3. Upload market price data (CSV)
-POST /api/market/upload-csv/
-
-4. Train forecasting models
-python forecasting/train_models.py
-
-5. Get forecasted prices
-POST /api/market/forecast/
-
-6. Get ranked market recommendations
-POST /api/market/recommend/
-
-7. Get final farmer-friendly advice
-POST /api/market/advice/
-
-8. Intended Impact
-
-FarmMarket AI has been designed to:
-
-Improve farmers’ ability to negotiate fair prices
-
-Reduce losses caused by poor timing or limited information
-
-Help farmers make informed decisions in a simple, accessible way
-
-Promote equitable access to AI tools regardless of language or literacy
-
-The system is meant to be a companion for farmers, not a replacement for their judgment or experience.
-It aims to strengthen their autonomy and economic resilience.
+No complexity.
+No barriers.
+Just practical, human advice accessible to anyone.
